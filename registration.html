@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Registration</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="login-form-wrap">
+    <h2>Register</h2>
+    <form action="register.php" method="post" id="login-form">
+        <p>
+            <input type="text"  name="username" placeholder="Username" required />
+        </p>
+        <p>
+            <input type="text"  name="email" placeholder="Email Address">
+        </p>
+        <p>
+            <input type="text"  name="mobile" placeholder="Mobile Number">
+        </p>
+        <p>
+            <input type="text"  name="program" placeholder="Program of Study">
+        </p>
+        <p>
+        <div id="password-warning"></div>
+        </p>
+        <p>
+            <input type="password" id="password" name="password" placeholder="Password" oninput="checkPassword()" required>
+        </p>
+        <p>
+            <input type="submit" name="submit" value="Register" >
+        </p>
+    </form>
+    <div id="create-account-wrap">
+        <p>Already a member? <a href="signin.html">Login</a>
+        <p>
+    </div><!--create-account-wrap-->
+</div>
+
+<script>
+    function checkPassword() {
+        var password = document.getElementById("password").value;
+
+        var specialChars = "!@#$%^&*";
+
+        var hasSpecial = false;
+
+        var minLength = 8;
+
+        // Loop through each character in the password
+        for (var i = 0; i < password.length; i++) {
+            // Check if the current character is a special character
+            if (specialChars.indexOf(password[i]) !== -1) {
+                hasSpecial = true;
+                break;
+            }
+        }
+
+        // Get the HTML element where warnings will be displayed
+        var warning = document.getElementById("password-warning");
+
+        // Check if the password is missing a special character
+        if (!hasSpecial) {
+            warning.innerHTML = "Password must contain at least one special character: !@#$%^&*";
+        }
+        // Check if the password is too short
+        else if (password.length < minLength) {
+            warning.innerHTML = "Password must be at least " + minLength + " characters long";
+        }
+        // If both conditions are met, clear the warning message
+        else {
+            warning.innerHTML = "";
+        }
+    }
+</script>
+</body>
+</html>
